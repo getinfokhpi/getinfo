@@ -73,16 +73,14 @@ export default function useCreateForm() {
                 directionId: data.directionId,
                 subDirectionId: data.subDirectionId,
                 status: RequestStatus.Submitted,
+                text: data.text,
+                documentLink: ""
             };
 
             if (data.document) {
                 const response = await uploadFile(data.document);
                 payload.documentLink = response.fileLink;
-                payload.text = "";
-            } else {
-                payload.documentLink = "";
-                payload.text = data.text;
-            }
+            } 
 
             createRequest.mutate(payload, {
                 onSuccess: () => {

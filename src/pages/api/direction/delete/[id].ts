@@ -12,16 +12,39 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             return;
         }
 
-        const deletedDirection = await prisma.directions.delete({
-            where: {
-                id: id,
-            },
-        });
+        try {
+            await prisma.message.deleteMany({
+                where: {
+                    requestId: {
+                        in: await prisma.request
+                            .findMany({
+                                where: { directionId: id },
+                                select: { id: true },
+                            })
+                            .then((requests) => requests.map((request) => request.id)),
+                    },
+                },
+            });
+            await prisma.request.deleteMany({
+                where: {
+                    directionId: id,
+                },
+            });
+            await prisma.subDirections.deleteMany({
+                where: {
+                    directionId: id,
+                },
+            });
+            await prisma.directions.delete({
+                where: {
+                    id: id,
+                },
+            });
 
-        if (deletedDirection) {
-            res.status(201).json({ message: "Successfully deleted" });
-        } else {
-            res.status(500).json({ message: "Category not found or not deleted" });
+            res.status(200).json({ message: "Successfully deleted" });
+        } catch (error) {
+            console.error("Error deleting category:", error);
+            res.status(500).json({ message: "Failed to delete category" });
         }
     } else {
         res.status(405).json({ error: "Method Not Allowed" });

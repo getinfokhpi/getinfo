@@ -18,6 +18,18 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                     documentLink,
                     directionId,
                     subDirectionId,
+                    messages: text || documentLink ? {
+                        create: {
+                            userId,
+                            userName: name,
+                            userSurname: surname,
+                            text,
+                            documentLinks: documentLink ? [documentLink] : [],
+                        },
+                    } : undefined,
+                },
+                include: {
+                    messages: true,
                 },
             });
 

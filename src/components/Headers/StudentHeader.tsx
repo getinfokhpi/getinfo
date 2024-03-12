@@ -35,12 +35,12 @@ const StudentHeader = () => {
                 <Group w={"40%"} gap={32} align="center" justify="flex-end">
                     {session && (
                         <>
-                            {path.startsWith(routes.REQUEST_PROCESSING) && (
+                            {!path.startsWith(routes.REQUEST_PROCESSING) && (
                                 <Link className={classes.link} href="/request-processing">
                                     Мої заявки
                                 </Link>
                             )}
-                            {path.startsWith(routes.REQUEST_DIRECTIONS) && (
+                            {!path.startsWith(routes.REQUEST_DIRECTIONS) && (
                                 <Link className={classes.link} href="/request-directions">
                                     Подати заявку
                                 </Link>
