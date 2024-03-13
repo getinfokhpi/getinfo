@@ -18,13 +18,13 @@ const TeacherHeader = () => {
         <header className={`${classes.header} ${classes.teacherHeader}`}>
             <Group justify="space-between" align="center">
                 <Group w={"40%"} px={24} gap={60} align="center">
-                    <Link className={classes.link} href="/">
+                    <Link className={classes.link} href={routes.MAIN}>
                         Головна
                     </Link>
-                    <Link className={classes.link} href="/faq">
-                        Часті питання
+                    <Link className={classes.link} href={routes.INFORMATION}>
+                        Інформація
                     </Link>
-                    <Link className={classes.link} href="/about-us">
+                    <Link className={classes.link} href={routes.ABOUT_US}>
                         Про нас
                     </Link>
                 </Group>

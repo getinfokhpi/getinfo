@@ -20,8 +20,8 @@ const Footer: FC = () => {
                             <UnstyledButton onClick={() => router.push("/")} className={styles.link}>
                                 Головна
                             </UnstyledButton>
-                            <UnstyledButton onClick={() => router.push(routes.NEWS)} className={styles.link}>
-                                Новини
+                            <UnstyledButton onClick={() => router.push(routes.REQUEST_PROCESSING)} className={styles.link}>
+                                Мої запити
                             </UnstyledButton>
                         </Flex>
                         <Flex>
@@ -30,7 +30,7 @@ const Footer: FC = () => {
                             </div>
                         </Flex>
                         <Flex gap={48} w="50%">
-                            <UnstyledButton onClick={() => router.push(routes.FAQ)} className={styles.link}>
+                            <UnstyledButton onClick={() => router.push(routes.INFORMATION)} className={styles.link}>
                                 Питання та відповіді
                             </UnstyledButton>
                             <UnstyledButton onClick={() => router.push(routes.ABOUT_US)} className={styles.link}>
